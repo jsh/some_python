@@ -1,10 +1,12 @@
 # The usual
 
 PYTEST_OPTIONS := -q --doctest-modules
+PYTHON_EXECUTABLE := $(shell which python3)
 SOURCES := $(wildcard *.py)
 TESTS := $(wildcard t/*.py)
 
-all: lint test
+
+all: black lint test
 
 black: isort
 	black -q ${SOURCES} ${TESTS}
@@ -19,7 +21,10 @@ coverage:
 isort:
 	isort ${SOURCES} ${TESTS}
 
-lint: black pylint
+lint: pylint mypy
+
+mypy:
+	mypy --python-executable ${PYTHON_EXECUTABLE} $$PWD
 
 pylint:
 	pylint -rn ${SOURCES} ${TESTS} | sort -t: -k2 -n -r
@@ -27,4 +32,4 @@ pylint:
 pytest test:
 	pytest ${PYTEST_OPTIONS}
 
-.PHONY: all black clean coverage isort lint pylint pytest test
+.PHONY: all black clean coverage isort lint mypy pylint pytest test
