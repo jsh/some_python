@@ -2,6 +2,9 @@
 """The canonical program."""
 
 import sys
+from typing import List
+
+from parse_args import parse_args
 
 
 def add_one(num: int) -> int:
@@ -14,12 +17,12 @@ def greet(greetee: str) -> str:
     return f"hello, {greetee}"
 
 
-def main() -> None:
+def main(argv: List[str]) -> None:
     """A function to provide scoping."""
-    world = "world"
-    print(greet(world))
+    args = parse_args(argv)
+    print(greet(args.greetee))
     sys.stderr.write(f"My favorite integer is {add_one(68)}\n")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
