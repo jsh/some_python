@@ -15,7 +15,10 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
 
     parser = argparse.ArgumentParser(description="Be friendly. Say hello.")
     parser.add_argument(
-        "-g", "--greetee", help="Who we're greeting (default=world)", default="world"
+        "-g", "--greetee", help="Who we're greeting [default=world]", default="world"
+    )
+    parser.add_argument(
+        "-l", "--logfile", help="Where to log [default=world]", default=None
     )
 
     params = parser.parse_args(argv)

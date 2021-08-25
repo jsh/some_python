@@ -6,9 +6,9 @@ from hello import add_one, greet, main
 
 def test_main(capsys) -> None:
     """Output of main()."""
-    main([])
+    main(["--greetee=everybody"])
     captured = capsys.readouterr()
-    assert captured.out == "hello, Paul\n"
+    assert captured.out == "hello, everybody\n"
     assert captured.err == "My favorite integer is 69\n"
 
 

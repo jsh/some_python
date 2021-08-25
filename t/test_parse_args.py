@@ -4,31 +4,35 @@
 from parse_args import parse_args
 
 
-def test_no_args(capsys) -> None:
+def test_no_args() -> None:
     """No args."""
     params = parse_args([])
     assert params.greetee == "world"
-    captured = capsys.readouterr()
-    assert captured.out == "hello, world\n"
-    assert captured.err == "My favorite integer is 69\n"
+    assert params.logfile is None
 
 
-def test_greetee_short(capsys) -> None:
-    """Test argument parsing."""
+def test_greetee_short() -> None:
+    """Test greetee parsing."""
     params = parse_args(["-gPaul"])  # short form
     assert params.greetee == "Paul"
-    captured = capsys.readouterr()
-    assert captured.out == "hello, Paul\n"
-    assert captured.err == "My favorite integer is 69\n"
 
 
-def test_greetee_long(capsys) -> None:
-    """Test argument parsing."""
+def test_greetee_long() -> None:
+    """Test greetee parsing."""
     params = parse_args(["--greetee=Jeff"])  # long form
     assert params.greetee == "Jeff"
-    captured = capsys.readouterr()
-    assert captured.out == "hello, Jeff\n"
-    assert captured.err == "My favorite integer is 69\n"
+
+
+def test_logfile_short() -> None:
+    """Test logfile parsing."""
+    params = parse_args(["-lshortname.log"])  # short form
+    assert params.logfile == "shortname.log"
+
+
+def test_longfile_long() -> None:
+    """Test logfile parsing."""
+    params = parse_args(["--logfile=longname.log"])  # long form
+    assert params.logfile == "longname.log"
 
 
 def test_badarg() -> None:
