@@ -4,7 +4,7 @@
 import logging
 
 
-def setup_logging(logfile: str) -> None:
+def configure_log(logfile: str = None) -> None:
     """Simple logging."""
 
     if logfile:
