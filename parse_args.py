@@ -20,6 +20,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     parser.add_argument(
         "-l", "--logfile", help="Where to log [default=world]", default=None
     )
+    parser.add_argument("-d", "--debug", help="Turn on debugging", action="store_true")
 
     params = parser.parse_args(argv)
 

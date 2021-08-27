@@ -9,6 +9,7 @@ def test_no_args() -> None:
     params = parse_args([])
     assert params.greetee == "world"
     assert params.logfile is None
+    assert params.debug is False
 
 
 def test_greetee_short() -> None:
@@ -23,13 +24,25 @@ def test_greetee_long() -> None:
     assert params.greetee == "Jeff"
 
 
+def test_debug_short() -> None:
+    """Test debug parsing."""
+    params = parse_args(["-d"])  # short form
+    assert params.debug is True
+
+
+def test_debug_long() -> None:
+    """Test debug parsing."""
+    params = parse_args(["--debug"])  # long form
+    assert params.debug is True
+
+
 def test_logfile_short() -> None:
     """Test logfile parsing."""
     params = parse_args(["-lshortname.log"])  # short form
     assert params.logfile == "shortname.log"
 
 
-def test_longfile_long() -> None:
+def test_logfile_long() -> None:
     """Test logfile parsing."""
     params = parse_args(["--logfile=longname.log"])  # long form
     assert params.logfile == "longname.log"
