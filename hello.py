@@ -22,8 +22,9 @@ def greet(greetee: str) -> str:
 def main(argv: List[str]) -> None:
     """A function to provide scoping."""
     args = parse_args(argv)
-    configure_log(args.logfile)
+    configure_log(args.logfile, args.debug)
     logging.debug(args)
+
     print(greet(args.greetee))
     sys.stderr.write(f"My favorite integer is {add_one(68)}\n")
 
