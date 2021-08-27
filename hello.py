@@ -3,6 +3,7 @@
 
 import logging
 import sys
+from datetime import datetime
 from typing import List
 
 from configure_log import configure_log
@@ -27,6 +28,7 @@ def main(argv: List[str]) -> None:
 
     print(greet(args.greetee))
     sys.stderr.write(f"My favorite integer is {add_one(68)}\n")
+    logging.info("%s: ran %s", datetime.now(), sys.argv[0])
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-A stub.
+A stub to illustrate logging.
 """
 
 import sys
